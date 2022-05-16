@@ -1,45 +1,54 @@
 import React from 'react'
 import './styles.css'
+import { useEffect, useState } from 'react';
+// Import menu from file
+// import { menuItems } from '../../../menu'
+import MenuItems from './MenuItems';
 
 const Header = () => {
-  return (
-    <header className='home-header'>
-      <nav className='navbar' role='navigation' aria-label='main navigation'>
-        <div className='navbar-brand'>
-          <a href='/' className='navbar-item'>
-            <img
-              src='https://test.canalrcndigital.com/img/logorcn.jpg'
-              alt='Logo'
-              width='100'
-              height='22'
-              className='logo'
-            />
-          </a>
 
-          <a
-            role='button'
-            className={'navbar-burger burger'}
-            aria-label='menu'
-            aria-expanded='false'
-            data-target='navbarBasicExample'
-          >
-            <span aria-hidden='true'></span>
-            <span aria-hidden='true'></span>
-            <span aria-hidden='true'></span>
-          </a>
-        </div>
-        <div id='navbarBasicExample' className='navbar-menu'>
-          <div className='navbar-end'>
-            <div className='navbar-item'>
-              <a href='/' className='navbar-item'>
-                Inicio
-              </a>
-             
-            </div>
+  const api = 'https://test.canalrcndigital.com/menu.json';
+  const [items, setItems] = useState([]);
+  const getMenus = async () => {
+    const response = await fetch(api);
+    const responseJSON = await response.json();
+    setItems(responseJSON);
+  }
+
+  useEffect(() => {
+    getMenus();
+  }, []);
+
+  return (
+    <>
+      {items != undefined ? (
+      <header className='home-header'>
+        <nav className='navbar' role='navigation' aria-label='main navigation'>
+          <div className='navbar-brand'>
+            <a href='/' className='navbar-item'>
+              <img
+                src='https://test.canalrcndigital.com/img/logorcn.jpg'
+                alt='Logo'
+                width='100'
+                height='22'
+                className='logo'
+              />
+           </a>
           </div>
-        </div>
-      </nav>
-    </header>
+          <ul className='menus'>
+            {
+                items.map((menu, index) => {
+                const depthLevel = 0
+                  return <MenuItems items={menu} key={index} depthLevel={depthLevel} />
+              })
+            }
+          </ul>
+        </nav>
+      </header>
+      ) : (' ')}
+
+    </>
+    
   )
 }
 

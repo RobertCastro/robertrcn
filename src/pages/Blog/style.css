@@ -1,0 +1,21 @@
+article img{
+    border-radius: 10px;
+    margin-top: 20px;
+}
+article h1{
+    color: #000 !important;
+
+}
+.sumario{
+    margin: 10px 0;
+    color: #9f9f9f;
+    font-size: 20px;
+}
+.listing{
+    padding: 20px 0 60px;
+}
+.antetitulo{
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}

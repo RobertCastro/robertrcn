@@ -10,14 +10,18 @@ function Card({ dato: { nid, title, fecha, field_seccion, field_image, field_des
     <div className="column is-one-quarter">
       <div className="card">
         <div className="card-image">
-          <figure className="image is-4by3">
-            <img src={image.src} alt={image.alt} />
+          <figure className="image is-3by2">
+            <Link to={`/blog/${nid}`}>
+              <img src={image.src} alt={image.alt} />
+            </Link>
           </figure>
         </div>
         <div className="card-content">
           <div className="media">
             <div className="media-content">
-              <p className="title is-4">{title}</p>
+              <Link to={`/blog/${nid}`} >
+                <h3 className="title is-4">{title}</h3>
+              </Link>
             </div>
           </div>
           <div className="content">

@@ -9,15 +9,12 @@ function App() {
 
   return (
 
-    <div className='container'>
+    <div>
 
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/blog/:id' element={<Blog />} />
-        { /* Catch all route */}
         <Route path="/blog/*" component={NotFound} status={404} />
-        {/* <Redirect to="/404" /> */}
-
       </Routes>
       
     </div>
